@@ -1,70 +1,74 @@
-import csv
-from datetime import datetime
-from collections import defaultdict
+Task Logger
+Overview
 
-LOG_FILE = 'task_log.csv'
+The Task Logger is a lightweight Python tool designed to help small business owners, freelancers, and makers track the time they spend on different customers, products, and tasks. By recording task start and end times, the program automatically calculates duration and logs the data into a CSV file for easy record-keeping and future analysis.
 
-def get_input(prompt):
-    return input(prompt).strip()
+This tool makes it easier to review daily, weekly, or monthly workloads and provides valuable insights into how time is allocated across customers and projects.
 
-def log_task(customer, product, task, start, end, duration):
-    with open(LOG_FILE, 'a', newline='') as f:
-        writer = csv.writer(f)
-        writer.writerow([
-            customer, product, task,
-            start.strftime('%Y-%m-%d'),
-            start.strftime('%H:%M:%S'),
-            end.strftime('%H:%M:%S'),
-            f"{duration:.2f}"
-        ])
+Importance
 
-def start_task():
-    customer = get_input("Customer name: ")
-    product = get_input("Product name: ")
-    task = get_input("What are you doing? ")
+For small business owners and independent workers, time is one of the most valuable resources. Without proper tracking, it’s easy to underestimate how long certain tasks take or lose track of where the day goes. The Task Logger solves this problem by offering a simple, menu-driven interface that records tasks consistently and generates summaries by customer and date.
 
-    start = datetime.now()
-    input(f"Started at {start.strftime('%H:%M')}. Press Enter when done...")
-    end = datetime.now()
-    duration = (end - start).total_seconds() / 60
+By having accurate time records, you can:
 
-    log_task(customer, product, task, start, end, duration)
-    print(f"Saved: {customer} - {product} - {task} ({duration:.2f} min)")
+Improve billing accuracy.
 
-def show_summary():
-    summary = defaultdict(lambda: defaultdict(float))
+Identify time-consuming customers or products.
 
-    try:
-        with open(LOG_FILE, 'r') as f:
-            for row in csv.reader(f):
-                if len(row) < 7:
-                    continue
-                customer, _, _, date, _, _, mins = row
-                summary[date][customer] += float(mins)
-    except FileNotFoundError:
-        print("No tasks logged yet.")
-        return
+Better plan and manage your schedule.
 
-    for date, customers in sorted(summary.items()):
-        print(f"\n{date}")
-        for customer, minutes in customers.items():
-            print(f"  {customer}: {minutes:.2f} min")
+Features
 
-def main():
-    options = {
-        '1': start_task,
-        '2': show_summary,
-        '3': exit
-    }
+Simple Interface: A menu-driven system to start tasks, view summaries, and exit.
 
-    while True:
-        print("\n1. Start Task\n2. Show Summary\n3. Exit")
-        choice = get_input("Choose: ")
-        action = options.get(choice)
-        if action:
-            action()
-        else:
-            print("Invalid option. Try again.")
+Automatic Time Tracking: Records start and end times automatically, calculating duration in minutes.
 
-if __name__ == '__main__':
-    main()
+CSV Logging: Saves all records in a CSV file (task_log.csv) for easy review or import into spreadsheets.
+
+Daily Summary Reports: Provides a breakdown of how much time was spent per customer per day.
+
+Lightweight & Flexible: No databases or complicated setups required.
+
+Installation
+Prerequisites
+
+Python 3.x installed on your system.
+
+Setup
+
+Clone this repository or download the .py file.
+
+Run the program with:
+
+python task_logger.py
+
+Usage
+
+When running the program, you’ll see a menu:
+
+1. Start Task  
+2. Show Summary  
+3. Exit  
+
+
+Start Task
+
+Enter customer name, product name, and task description.
+
+The timer begins immediately.
+
+Press Enter when the task is complete.
+
+The program automatically saves the entry into task_log.csv.
+
+Show Summary
+
+Displays total minutes worked per customer, grouped by date.
+
+Example Log (CSV)
+Customer	Product	Task	Date	Start	End	Minutes
+Alice	Wallet	Stitching	2025-08-18	14:05:00	14:35:00	30.00
+Bob	Belt	Cutting	2025-08-18	15:00:00	15:20:00	20.00
+Acknowledgements
+
+This project was created to help small business owners, crafters, and freelancers stay on top of their time tracking without needing complex software.
