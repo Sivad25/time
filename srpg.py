@@ -56,7 +56,34 @@ def show_summary():
         for customer, minutes in customers.items():
             print(f"  {customer}: {minutes:.2f} min")
 
+def delete_entry():
+    try:
+        with open(LOG_FILE, 'r') as f:
+            rows = list(csv.reader(f))
+    except FileNotFoundError:
+        print("No tasks logged yet.")
+        return
 
+    if not rows:
+        print("No tasks logged yet.")
+        return
+
+    # Show entries quickly
+    for i, row in enumerate(rows, start=1):
+        print(i, row)
+
+    try:
+        choice = int(get_input("Number to delete: "))
+        if 1 <= choice <= len(rows):
+            rows.pop(choice - 1)
+            with open(LOG_FILE, 'w', newline='') as f:
+                writer = csv.writer(f)
+                writer.writerows(rows)
+            print("Deleted.")
+        else:
+            print("Invalid number.")
+    except ValueError:
+        print("Please enter a valid number.")
 def main():
     options = {
         '1': start_task,
