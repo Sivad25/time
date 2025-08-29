@@ -19,13 +19,17 @@ Better plan and manage your schedule.
 
 Features
 
-Simple Interface: A menu-driven system to start tasks, view summaries, and exit.
+Welcome Message: Greets the user when they start the program.
+
+Simple Interface: A menu-driven system to start tasks, view summaries, delete entries, and exit.
 
 Automatic Time Tracking: Records start and end times automatically, calculating duration in minutes.
 
 CSV Logging: Saves all records in a CSV file (task_log.csv) for easy review or import into spreadsheets.
 
 Daily Summary Reports: Provides a breakdown of how much time was spent per customer per day.
+
+Delete Functionality: Remove incorrect or unwanted entries from the log.
 
 Lightweight & Flexible: No databases or complicated setups required.
 
@@ -46,10 +50,14 @@ Usage
 
 When running the program, you’ll see a menu:
 
+Welcome to Task Logger!  
+Track your time, stay organized, and manage your work better.
+
+--- Task Logger ---
 1. Start Task  
 2. Show Summary  
-3. Exit  
-
+3. Delete Entry  
+4. Exit  
 
 Start Task
 
@@ -64,13 +72,11 @@ The program automatically saves the entry into task_log.csv.
 Show Summary
 
 Displays total minutes worked per customer, grouped by date.
+
 Delete Entry
 
-Displays all tasks in the CSV file with a numbered list.
+Lets you select and remove a specific log entry from the CSV file.
 
-Enter the number of the task you want to remove.
-
-Updates the file after deletion.
 Example Log (CSV)
 Customer	Product	Task	Date	Start	End	Minutes
 Alice	Wallet	Stitching	2025-08-18	14:05:00	14:35:00	30.00
