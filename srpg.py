@@ -16,7 +16,7 @@ def get_input(prompt):
 def ensure_file():
     """Make sure CSV file exists with headers."""
     if not os.path.exists(LOG_FILE):
-        with open(LOG_FILE, "w", newline="") as f:
+        with open(LOG_FILE, "w", newline="", encoding="utf-8") as f:
             writer = csv.writer(f)
             writer.writerow(HEADERS)
 
@@ -24,7 +24,7 @@ def ensure_file():
 def log_task(customer, product, task, start, end, duration):
     """Write a new task log entry to CSV."""
     ensure_file()
-    with open(LOG_FILE, "a", newline="") as f:
+    with open(LOG_FILE, "a", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
         writer.writerow(
             [
@@ -44,7 +44,7 @@ def show_summary():
     summary = defaultdict(lambda: defaultdict(float))
 
     try:
-        with open(LOG_FILE, "r") as f:
+        with open(LOG_FILE, "r", encoding="utf-8") as f:
             reader = csv.reader(f)
             headers = next(reader, None)
             for row in reader:
@@ -53,14 +53,14 @@ def show_summary():
                 customer, _, _, date, _, _, mins = row
                 summary[date][customer] += float(mins)
     except FileNotFoundError:
-        print(" No tasks logged yet.")
+        print("No tasks logged yet.")
         return
 
     if not summary:
-        print(" No tasks logged yet.")
+        print("No tasks logged yet.")
         return
 
-    print("\n Daily Summary")
+    print("\nDaily Summary")
     for date, customers in sorted(summary.items()):
         print(f"\n{date}")
         for customer, minutes in customers.items():
@@ -74,20 +74,20 @@ def show_summary():
 def delete_entry():
     """Delete a logged entry by index."""
     try:
-        with open(LOG_FILE, "r") as f:
+        with open(LOG_FILE, "r", encoding="utf-8") as f:
             rows = list(csv.reader(f))
     except FileNotFoundError:
-        print(" No tasks logged yet.")
+        print("No tasks logged yet.")
         return
 
     if len(rows) <= 1:
-        print(" No tasks logged yet.")
+        print("No tasks logged yet.")
         return
 
     headers = rows[0]
     entries = rows[1:]
 
-    print("\n Entries:")
+    print("\nEntries:")
     for i, row in enumerate(entries, start=1):
         print(i, row)
 
@@ -95,15 +95,15 @@ def delete_entry():
         choice = int(get_input("Number to delete: "))
         if 1 <= choice <= len(entries):
             deleted = entries.pop(choice - 1)
-            with open(LOG_FILE, "w", newline="") as f:
+            with open(LOG_FILE, "w", newline="", encoding="utf-8") as f:
                 writer = csv.writer(f)
                 writer.writerow(headers)
                 writer.writerows(entries)
-            print(f"✅ Deleted entry: {deleted}")
+            print(f"Deleted entry: {deleted}")
         else:
-            print(" Invalid number.")
+            print("Invalid number.")
     except ValueError:
-        print(" Please enter a valid number.")
+        print("Please enter a valid number.")
 
 
 def start_task():
@@ -112,7 +112,7 @@ def start_task():
     product = get_input("Product name: ")
     task = get_input("Task description: ")
 
-    print(" Press Enter when you finish the task...")
+    print("Press Enter when you finish the task...")
     start = datetime.now()
     input()  # Wait until user presses Enter
     end = datetime.now()
@@ -120,11 +120,12 @@ def start_task():
     duration = (end - start).total_seconds() / 60  # in minutes
 
     log_task(customer, product, task, start, end, duration)
-    print(f" Task logged! Duration: {duration:.2f} minutes.")
+    print(f"Task logged! Duration: {duration:.2f} minutes.")
 
 
 def main():
-    print("\n Welcome to Task Logger!")
+    """Main menu loop for Task Logger."""
+    print("\nWelcome to Task Logger!")
     print("Track your time, stay organized, and manage your work better.\n")
 
     options = {
@@ -146,7 +147,7 @@ def main():
         if action:
             action()
         else:
-            print(" Invalid option. Try again.")
+            print("Invalid option. Try again.")
 
 
 if __name__ == "__main__":
