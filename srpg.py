@@ -53,14 +53,14 @@ def show_summary():
                 customer, _, _, date, _, _, mins = row
                 summary[date][customer] += float(mins)
     except FileNotFoundError:
-        print("⚠️ No tasks logged yet.")
+        print(" No tasks logged yet.")
         return
 
     if not summary:
-        print("⚠️ No tasks logged yet.")
+        print(" No tasks logged yet.")
         return
 
-    print("\n📊 Daily Summary")
+    print("\n Daily Summary")
     for date, customers in sorted(summary.items()):
         print(f"\n{date}")
         for customer, minutes in customers.items():
@@ -77,17 +77,17 @@ def delete_entry():
         with open(LOG_FILE, "r") as f:
             rows = list(csv.reader(f))
     except FileNotFoundError:
-        print("⚠️ No tasks logged yet.")
+        print(" No tasks logged yet.")
         return
 
     if len(rows) <= 1:
-        print("⚠️ No tasks logged yet.")
+        print(" No tasks logged yet.")
         return
 
     headers = rows[0]
     entries = rows[1:]
 
-    print("\n🗑️ Entries:")
+    print("\n Entries:")
     for i, row in enumerate(entries, start=1):
         print(i, row)
 
@@ -101,9 +101,9 @@ def delete_entry():
                 writer.writerows(entries)
             print(f"✅ Deleted entry: {deleted}")
         else:
-            print("⚠️ Invalid number.")
+            print(" Invalid number.")
     except ValueError:
-        print("⚠️ Please enter a valid number.")
+        print(" Please enter a valid number.")
 
 
 def start_task():
@@ -112,7 +112,7 @@ def start_task():
     product = get_input("Product name: ")
     task = get_input("Task description: ")
 
-    print("⏳ Press Enter when you finish the task...")
+    print(" Press Enter when you finish the task...")
     start = datetime.now()
     input()  # Wait until user presses Enter
     end = datetime.now()
@@ -120,11 +120,11 @@ def start_task():
     duration = (end - start).total_seconds() / 60  # in minutes
 
     log_task(customer, product, task, start, end, duration)
-    print(f"✅ Task logged! Duration: {duration:.2f} minutes.")
+    print(f" Task logged! Duration: {duration:.2f} minutes.")
 
 
 def main():
-    print("\n👋 Welcome to Task Logger!")
+    print("\n Welcome to Task Logger!")
     print("Track your time, stay organized, and manage your work better.\n")
 
     options = {
@@ -146,7 +146,7 @@ def main():
         if action:
             action()
         else:
-            print("⚠️ Invalid option. Try again.")
+            print(" Invalid option. Try again.")
 
 
 if __name__ == "__main__":
