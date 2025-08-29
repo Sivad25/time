@@ -101,19 +101,22 @@ def delete_entry():
 
 
 def main():
+    print("\n👋 Welcome to Task Logger!")      
+    print("Track your time, stay organized, and manage your work better.\n") 
+
     options = {
         '1': start_task,
         '2': show_summary,
-        '3': delete_entry,   
-        '4': sys.exit        
+        '3': delete_entry,  
+        '4': sys.exit   
     }
 
     while True:
         print("\n--- Task Logger ---")
         print("1. Start Task")
         print("2. Show Summary")
-        print("3. Delete Entry")  
-        print("4. Exit")         
+        print("3. Delete Entry")
+        print("4. Exit")
 
         choice = get_input("Choose: ")
         action = options.get(choice)
