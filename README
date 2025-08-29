@@ -64,7 +64,13 @@ The program automatically saves the entry into task_log.csv.
 Show Summary
 
 Displays total minutes worked per customer, grouped by date.
+Delete Entry
 
+Displays all tasks in the CSV file with a numbered list.
+
+Enter the number of the task you want to remove.
+
+Updates the file after deletion.
 Example Log (CSV)
 Customer	Product	Task	Date	Start	End	Minutes
 Alice	Wallet	Stitching	2025-08-18	14:05:00	14:35:00	30.00
