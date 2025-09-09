@@ -1,0 +1,65 @@
+# Task Logger Presentation
+
+## Slide 1: Introduction
+**Title:** Task Logger: A Lightweight Time Tracking Tool  
+**Subtitle:** Presented by Kevin Davis  
+**Speaker notes:** “Hello, my name is Kevin Davis. Today, I’ll be presenting my independent project: Time.”
+
+---
+
+## Slide 2: What I’m Presenting
+**Bullets:**  
+- Project: Time  
+- Purpose: Track time spent on tasks  
+**Speaker notes:** “I’ll introduce what the project does, explain my motivation, walk through how I created it, and then give a short demonstration before sharing next steps.”
+
+---
+
+## Slide 3: Project Overview
+**Text:** Task Logger helps small business owners and freelancers track time on customers, products, and tasks.  
+**Speaker notes:** “The tool records start and end times, saves them in a CSV file, and generates daily summaries.”
+
+---
+
+## Slide 4: Motivation
+**Bullets:**  
+- Time is valuable  
+- Tasks are easy to forget  
+- Need simple tracking  
+**Speaker notes:** “As a maker and freelancer, I know how quickly the day disappears. Without tracking, it’s easy to underestimate work or forget where time went. I wanted a tool that was simple, lightweight, and accurate.”
+
+---
+
+## Slide 5: Preparation & Planning
+**Flowchart:** Define features → Plan menu options → Write code in Python → Test & refine  
+**Speaker notes:** “I first outlined the key features: start/stop tasks, summaries, and CSV logging. Then I designed a menu system, wrote the program in Python, and tested it with sample tasks.”
+
+---
+
+## Slide 6: Knowledge & Research
+**Bullets:**  
+- Knew: Python basics, file I/O  
+- Learned: CSV handling, summaries, user menus  
+**Speaker notes:** “I already knew basic Python, but I learned more about handling CSV files, formatting dates, and building user-friendly menus.”
+
+---
+
+## Slide 7: Demonstration
+**Screenshot of program menu (placeholder)**  
+**Speaker notes:** Walk through the program as a user: Run the program → see welcome screen. Start a task → enter customer, product, task. Press Enter when done → duration is saved. Show Summary → see minutes per customer. Delete Entry → remove a mistake. (Show this live or use pre-recorded screen capture.)
+
+---
+
+## Slide 8: Next Steps & Extensions
+**Bullets:**  
+- Add reports by week/month  
+- Export to Excel/Google Sheets  
+- Simple GUI version  
+- Share via GitHub  
+**Speaker notes:** “Next, I want to add longer reports, make an export option, and maybe a graphical interface. The code is on GitHub so others can use or contribute.”
+
+---
+
+## Slide 9: Conclusion
+**Text:** Thank You! GitHub: https://github.com/Sivad25/time  
+**Speaker notes:** “In summary, Task Logger is a simple but powerful way to track time, improve billing, and plan better. Thank you for listening!"
